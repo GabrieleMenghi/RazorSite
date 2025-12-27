@@ -207,7 +207,7 @@
         .service-card:hover {
             transform: translateY(-10px);
             border-color: var(--gold);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 40px rgba(207, 205, 197, 0.3);
         }
 
         .service-icon {
@@ -255,7 +255,7 @@
         .gallery-item:hover {
             transform: scale(1.02);
             border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(207, 205, 197, 0.3);
         }
 
         .gallery-placeholder {
@@ -310,7 +310,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--gold);
-            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 0 2px rgba(207, 205, 197, 0.3);
         }
 
         .form-group textarea {
