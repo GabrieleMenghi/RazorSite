@@ -272,48 +272,6 @@ z"/>
         <p class="section-subtitle">I nostri lavori</p>
         
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="images/taglio1.jpeg" alt="Taglio 1">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio2.jpeg" alt="Taglio 2">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio3.jpeg" alt="Taglio 3">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio4.jpeg" alt="Taglio 4">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio5.jpeg" alt="Taglio 5">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio6.jpeg" alt="Taglio 6">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio7.jpeg" alt="Taglio 7">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio8.jpeg" alt="Taglio 8">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio9.jpeg" alt="Taglio 9">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio10.jpeg" alt="Taglio 10">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio11.jpeg" alt="Taglio 11">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio12.jpeg" alt="Taglio 12">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio13.jpeg" alt="Taglio 13">
-            </div>
-            <div class="gallery-item">
-                <img src="images/taglio14.jpeg" alt="Taglio 14">
-            </div>
         </div>
     </section>
 
@@ -499,6 +457,40 @@ z"/>
             } else {
                 nav.style.padding = '1.5rem 5%';
             }
+        });
+
+        // Array con i nomi delle immagini
+        const galleryImages = [
+            'taglio1.jpeg',
+            'taglio2.jpeg',
+            'taglio3.jpeg',
+            'taglio4.jpeg',
+            'taglio5.jpeg',
+            'taglio6.jpeg',
+            'taglio7.jpeg',
+            'taglio8.jpeg',
+            'taglio9.jpeg',
+            'taglio10.jpeg',
+            'taglio11.jpeg',
+            'taglio12.jpeg',
+            'taglio13.jpeg',
+            'taglio14.jpeg'
+        ];
+
+        // Genera le immagini della gallery
+        const galleryGrid = document.querySelector('.gallery-grid');
+        galleryGrid.innerHTML = ''; // Pulisce il contenuto esistente
+
+        galleryImages.forEach((image, index) => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            
+            const img = document.createElement('img');
+            img.src = `images/${image}`;
+            img.alt = `Lavoro barberia ${index + 1}`;
+            
+            galleryItem.appendChild(img);
+            galleryGrid.appendChild(galleryItem);
         });
     </script>
 </body>
