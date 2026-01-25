@@ -609,7 +609,7 @@
             position: relative;
         }
 
-        /* Dissolvenza multipla: destra, sinistra e basso */
+        /* Dissolvenza uniforme su tutti e 4 i lati */
         .hero-variant-4 .hero-image-side::after {
             content: '';
             position: absolute;
@@ -654,13 +654,15 @@
                 );
         }
 
+        /* CONTENUTO HERO - CENTRATO ✨ */
         .hero-variant-4 .hero-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;        /* Centrato orizzontalmente */
             padding: 80px 60px;
             background-color: #0a0a0a;
             color: white;
+            text-align: center;          /* Testo centrato */
         }
