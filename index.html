@@ -220,6 +220,16 @@
         </div>
     </section>
 
+	<!-- Fullscreen Image Viewer -->
+	<div id="imageFullscreen" class="fullscreen-overlay">
+		<span class="close-btn">&times;</span>
+
+		<span class="nav-arrow left-arrow">&#10094;</span>
+		<span class="nav-arrow right-arrow">&#10095;</span>
+
+		<img id="fullscreenImg" src="" alt="Preview">
+	</div>
+
     <!-- Footer -->
     <footer>
         <!-- Social -->
@@ -383,6 +393,72 @@
 				}
     });
 });
+
+// Fullscreen image viewer with navigation
+const fullscreenOverlay = document.getElementById('imageFullscreen');
+const fullscreenImg = document.getElementById('fullscreenImg');
+const closeBtn = document.querySelector('.close-btn');
+
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
+
+const galleryImagesTags = Array.from(document.querySelectorAll('.gallery-item img'));
+let currentIndex = 0;
+
+// Open fullscreen
+galleryImagesTags.forEach((img, index) => {
+    img.addEventListener('click', () => {
+        currentIndex = index;
+        fullscreenImg.src = img.src;
+        fullscreenOverlay.classList.add('active');
+    });
+});
+
+// Navigation function
+function showImage(index) {
+    currentIndex = (index + galleryImagesTags.length) % galleryImagesTags.length;
+    fullscreenImg.src = galleryImagesTags[currentIndex].src;
+}
+
+// Arrows click
+leftArrow.addEventListener('click', () => showImage(currentIndex - 1));
+rightArrow.addEventListener('click', () => showImage(currentIndex + 1));
+
+// Close fullscreen
+closeBtn.addEventListener('click', () => {
+    fullscreenOverlay.classList.remove('active');
+});
+
+// Click outside image
+fullscreenOverlay.addEventListener('click', (e) => {
+    if (e.target === fullscreenOverlay) {
+        fullscreenOverlay.classList.remove('active');
+    }
+});
+
+// Keyboard arrows
+document.addEventListener('keydown', (e) => {
+    if (!fullscreenOverlay.classList.contains('active')) return;
+
+    if (e.key === "ArrowRight") showImage(currentIndex + 1);
+    if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+    if (e.key === "Escape") fullscreenOverlay.classList.remove('active');
+});
+
+// Mobile swipe
+let touchStartX = 0;
+
+fullscreenOverlay.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+fullscreenOverlay.addEventListener('touchend', (e) => {
+    let diff = e.changedTouches[0].screenX - touchStartX;
+
+    if (diff > 50) showImage(currentIndex - 1); // swipe right
+    if (diff < -50) showImage(currentIndex + 1); // swipe left
+});
+
     </script>
 </body>
 </html>
