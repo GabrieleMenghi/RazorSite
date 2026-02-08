@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	<link rel="icon" type="image/x-icon" href="images/rLogo.png">
+
+	<!-- Cookie Consent -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+
 </head>
 <body>
     <!-- Navigation -->
@@ -348,6 +353,30 @@
             galleryItem.appendChild(img);
             galleryGrid.appendChild(galleryItem);
         });
+
+		// Cookies
+		window.addEventListener("load", function(){
+			window.cookieconsent.initialise({
+				"palette": {
+					"popup": {
+						"background": "#1a1a1a",
+						"text": "#f5f5f5"
+					},
+					"button": {
+						"background": "#e5e4e2",
+						"text": "#0a0a0a"
+					}
+				},
+				"theme": "classic",
+				"position": "bottom",
+				"content": {
+					"message": "Questo sito utilizza cookie tecnici e di terze parti per migliorare l'esperienza di navigazione.",
+					"dismiss": "Accetto",
+					"link": "Privacy Policy",
+					"href": "privacy-policy.html"
+				}
+    });
+});
     </script>
 </body>
 </html>
