@@ -172,6 +172,13 @@
             letter-spacing: 1px;
         }
 
+        .section-subtitle-no-margin {
+            text-align: center;
+            color: var(--light-grey);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
         /* Services */
         .services-grid {
             display: grid;
