@@ -365,7 +365,9 @@
             const submitButton = this.querySelector('.submit-button');
             const originalText = submitButton.textContent;
             submitButton.disabled = true;
-            submitButton.textContent = 'Invio in corso...';
+
+            const currentLang = localStorage.getItem('preferredLanguage') || 'it';
+            submitButton.textContent = translations[currentLang].form_submit_sending;
 
             // Parametri da inviare
             const str = document.getElementById('date').value;
@@ -407,7 +409,7 @@
 
                 }, function (error) {
                     console.error('Errore:', error);
-                    alert('Errore nell\'invio. Riprova o contattaci al +39 370 361 7836');
+                    alert(translations[currentLanguage].error_message);
 
                     submitButton.disabled = false;
                     submitButton.textContent = originalText;
