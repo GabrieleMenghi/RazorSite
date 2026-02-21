@@ -33,13 +33,20 @@
         <div class="container">
             <img src="images/LogoConBaffo-noSfondo.png" alt="Razor Logo" class="logo-img"
                 style="width: 15%; height: 15%;">
+
+            <!-- Selettore lingua -->
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="it">🇮🇹 IT</button>
+                <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+            </div>
+
             <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
             <ul id="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#servizi">Servizi</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#prenota">Prenota</a></li>
-                <li><a href="#contatti">Contatti</a></li>
+                <li><a href="#home" data-translate="nav_home">Home</a></li>
+                <li><a href="#servizi" data-translate="nav_services">Servizi</a></li>
+                <li><a href="#gallery" data-translate="nav_gallery">Gallery</a></li>
+                <li><a href="#prenota" data-translate="nav_booking">Prenota</a></li>
+                <li><a href="#contatti" data-translate="nav_contacts">Contatti</a></li>
             </ul>
         </div>
     </nav>
@@ -49,22 +56,22 @@
         <div class="hero-image-side"></div>
         <div class="hero-content">
             <img src="images/LogoConBaffo-noSfondo.png" alt="Razor Logo" class="hero-logo">
-            <p class="tagline">" L'Eleganza è l'unica Bellezza che non svanisce mai "</p>
-            <a href="#prenota" class="cta-button" style="margin-top: 15%;">Prenota Ora</a>
+            <p class="tagline" data-translate="hero_tagline">" L'Eleganza è l'unica Bellezza che non svanisce mai "</p>
+            <a href="#prenota" class="cta-button" style="margin-top: 15%;" data-translate="hero_cta">Prenota Ora</a>
         </div>
     </section>
 
     <!-- Services Section -->
     <section id="servizi">
-        <h2 class="section-title">I Nostri Servizi</h2>
-        <p class="section-subtitle">Eccellenza e stile in ogni taglio</p>
+        <h2 class="section-title" data-translate="services_title">I Nostri Servizi</h2>
+        <p class="section-subtitle" data-translate="services_subtitle">Eccellenza e stile in ogni taglio</p>
 
         <div class="services-grid">
             <!-- Servizi veri -->
             <div class="service-card">
                 <div class="service-icon"><img src="images/boy.png" alt="Taglio bimbo"></div>
-                <h3>Taglio Boy</h3>
-                <p
+                <h3 data-translate="service_boy_title">Taglio Boy</h3>
+                <p data-translate="service_boy_desc"
                     title="Il servizio di taglio boy verrà svolto con il prezzo attuale solo durante la settimana, ad esclusione del sabato, dove i prezzi verranno automaticamente adeguati ad €20">
                     Taglio dedicato ai più piccoli fino a 11 anni, curato con attenzione per garantire comfort e stile.
                 </p>
@@ -73,69 +80,78 @@
 
             <div class="service-card">
                 <div class="service-icon"><img src="images/man.png" alt="Taglio uomo"></div>
-                <h3>Taglio Uomo</h3>
-                <p>Taglio maschile dai 12 anni in su, personalizzato secondo il tuo stile e le ultime tendenze.</p>
+                <h3 data-translate="service_man_title">Taglio Uomo</h3>
+                <p data-translate="service_man_desc">Taglio maschile dai 12 anni in su, personalizzato secondo il tuo
+                    stile e le ultime tendenze.</p>
                 <div class="service-price">€25</div>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><img src="images/RasaturaCapo.png" alt="Rasatura capo"></div>
-                <h3>Rasatura del Capo Smart</h3>
-                <p>Rasatura rapida e precisa della testa con trimmer e shaver, completata da una crema idratante per la
+                <h3 data-translate="service_head_title">Rasatura del Capo Smart</h3>
+                <p data-translate="service_head_desc">Rasatura rapida e precisa della testa con trimmer e shaver,
+                    completata da una crema idratante per la
                     pelle.</p>
                 <div class="service-price">€10</div>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><img src="images/ModellaturaBarba.png" alt="Modellatura barba premium"></div>
-                <h3>Modellatura Barba Premium</h3>
-                <p>Rifinitura completa della barba con trimmer e lama, panno caldo e freddo, balsamo, olio e dopobarba.
+                <h3 data-translate="service_beard_premium_title">Modellatura Barba Premium</h3>
+                <p data-translate="service_beard_premium_desc">Rifinitura completa della barba con trimmer e lama, panno
+                    caldo e freddo, balsamo, olio e dopobarba.
                     Opzione stiratura a piastra con supplemento di €3.</p>
                 <div class="service-price">€15</div>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><img src="images/ModellaturaBarba.png" alt="Modellatura barba smart"></div>
-                <h3>Modellatura Barba Smart</h3>
-                <p>Rifinitura della barba con trimmer e/o forbici, completata da shaver, olio e dopobarba per un look
+                <h3 data-translate="service_beard_smart_title">Modellatura Barba Smart</h3>
+                <p data-translate="service_beard_smart_desc">Rifinitura della barba con trimmer e/o forbici, completata
+                    da shaver, olio e dopobarba per un look
                     curato e naturale.</p>
                 <div class="service-price">€10</div>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><img src="images/RasaturaBarba.png" alt="Rasatura barba smart"></div>
-                <h3>Rasatura Barba Smart</h3>
-                <p>Rasatura veloce e impeccabile della barba con trimmer e shaver, seguita da crema idratante per un
+                <h3 data-translate="service_shave_smart_title">Rasatura Barba Smart</h3>
+                <p data-translate="service_shave_smart_desc">Rasatura veloce e impeccabile della barba con trimmer e
+                    shaver, seguita da crema idratante per un
                     finish morbido.</p>
                 <div class="service-price">€10</div>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><img src="images/RasaturaBarba.png" alt="Rasatura tradizionale"></div>
-                <h3>Rasatura Tradizionale</h3>
-                <p>Rasatura classica con shavette, arricchita da crema pre-barba, panno caldo e freddo e dopobarba per
+                <h3 data-translate="service_traditional_title">Rasatura Tradizionale</h3>
+                <p data-translate="service_traditional_desc">Rasatura classica con shavette, arricchita da crema
+                    pre-barba, panno caldo e freddo e dopobarba per
                     un’esperienza completa.</p>
                 <div class="service-price">€20</div>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><img src="images/Sopracciglia.png" alt="Sopracciglia"></div>
-                <h3>Sopracciglia</h3>
-                <p>Definizione delle sopracciglia con ceretta o pinze, per uno sguardo pulito e curato.</p>
+                <h3 data-translate="service_eyebrows_title">Sopracciglia</h3>
+                <p data-translate="service_eyebrows_desc">Definizione delle sopracciglia con ceretta o pinze, per uno
+                    sguardo pulito e curato.</p>
                 <div class="service-price">€5</div>
             </div>
         </div>
 
-        <p class="section-subtitle-no-margin" style="margin-top: 5%; margin-bottom: 1%;">Il prezzo dei servizi può
+        <p data-translate="services_note1" class="section-subtitle-no-margin"
+            style="margin-top: 5%; margin-bottom: 1%;">Il prezzo dei servizi può
             variare in base a lunghezza, tecnica e tempo richiesto.</p>
-        <p class="section-subtitle-no-margin">Tutti i servizi di taglio e rasatura comprendono pulizia otonasale da peli
+        <p data-translate="services_note2" class="section-subtitle-no-margin">Tutti i servizi di taglio e rasatura
+            comprendono pulizia otonasale da peli
             superflui.</p>
     </section>
 
     <!-- Gallery Section -->
     <section id="gallery">
-        <h2 class="section-title">Gallery</h2>
-        <p class="section-subtitle">I nostri lavori</p>
+        <h2 class="section-title" data-translate="gallery_title">Gallery</h2>
+        <p class="section-subtitle" data-translate="gallery_subtitle">I nostri lavori</p>
 
         <div class="gallery-grid">
         </div>
@@ -143,48 +159,58 @@
 
     <!-- Booking Section -->
     <section id="prenota">
-        <h2 class="section-title">Prenota un Appuntamento</h2>
-        <p class="section-subtitle">Richiedi il tuo appuntamento, ti richiameremo per confermare</p>
+        <h2 class="section-title" data-translate="booking_title">Prenota un Appuntamento</h2>
+        <p class="section-subtitle" data-translate="booking_subtitle">Richiedi il tuo appuntamento, ti richiameremo per
+            confermare</p>
 
         <div class="booking-info">
-            <p><strong>Come funziona:</strong> Compila il modulo con i tuoi dati e le tue preferenze. Il nostro staff ti
-                contatterà entro 24 ore per confermare l'appuntamento o proporre un orario alternativo.</p>
+            <p>
+                <strong data-translate="booking_info_title">Come funziona:</strong>
+                <span data-translate="booking_info">Compila il modulo con i tuoi dati e le tue preferenze. Il nostro
+                    staff ti contatterà entro 24 ore per confermare l'appuntamento o proporre un orario
+                    alternativo.</span>
+            </p>
         </div>
 
         <div class="booking-form">
             <form id="bookingForm">
                 <div class="form-group">
-                    <label for="name">Nome Completo *</label>
+                    <label for="name" data-translate="form_name">Nome Completo *</label>
                     <input type="text" id="name" name="name" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Telefono *</label>
+                    <label for="phone" data-translate="form_phone">Telefono *</label>
                     <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email" data-translate="form_email">Email</label>
                     <input type="email" id="email" name="email">
                 </div>
 
                 <div class="form-group">
-                    <label for="service">Servizio Desiderato *</label>
+                    <label for="service" data-translate="form_service">Servizio Desiderato *</label>
                     <select id="service" name="service" required>
-                        <option value="">Seleziona un servizio</option>
-                        <option value="taglio-boy">Taglio Boy - €17</option>
-                        <option value="taglio-uomo">Taglio Uomo - €25</option>
-                        <option value="rasatura-capo">Rasatura del Capo Smart - €10</option>
-                        <option value="modellatura-premium">Modellatura Barba Premium - €15</option>
-                        <option value="modellatura-smart">Modellatura Barba Smart - €10</option>
-                        <option value="rasatura-barba">Rasatura Barba Smart - €10</option>
-                        <option value="rasatura-tradizionale">Rasatura Tradizionale - €20</option>
-                        <option value="sopracciglia">Sopracciglia - €5</option>
+                        <option value="" data-translate="form_select">Seleziona un servizio</option>
+                        <option value="taglio-boy" data-translate="service_boy_option">Taglio Boy - €17</option>
+                        <option value="taglio-uomo" data-translate="service_man_option">Taglio Uomo - €25</option>
+                        <option value="rasatura-capo" data-translate="service_head_option">Rasatura del Capo Smart - €10
+                        </option>
+                        <option value="modellatura-premium" data-translate="service_beard_premium_option">Modellatura
+                            Barba Premium - €15</option>
+                        <option value="modellatura-smart" data-translate="service_beard_smart_option">Modellatura Barba
+                            Smart - €10</option>
+                        <option value="rasatura-barba" data-translate="service_shave_smart_option">Rasatura Barba Smart
+                            - €10</option>
+                        <option value="rasatura-tradizionale" data-translate="service_traditional_option">Rasatura
+                            Tradizionale - €20</option>
+                        <option value="sopracciglia" data-translate="service_eyebrows_option">Sopracciglia - €5</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="date">Data Preferita *</label>
+                    <label for="date" data-translate="form_date">Data Preferita *</label>
                     <div class="input-with-icon">
                         <i class="fa-regular fa-calendar"></i>
                         <input type="date" id="date" name="date" required>
@@ -192,7 +218,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="time">Ora Preferita *</label>
+                    <label for="time" data-translate="form_time">Ora Preferita *</label>
                     <div class="input-with-icon">
                         <i class="fa-regular fa-clock"></i>
                         <input type="time" id="time" name="time" required min="09:00" max="19:00">
@@ -200,15 +226,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="notes">Note Aggiuntive</label>
-                    <textarea id="notes" name="notes"
+                    <label for="notes" data-translate="form_notes">Note Aggiuntive</label>
+                    <textarea id="notes" name="notes" data-translate="form_notes_placeholder"
                         placeholder="Eventuali richieste particolari o informazioni utili..."></textarea>
                 </div>
 
-                <button type="submit" class="submit-button">Invia Richiesta</button>
+                <button type="submit" class="submit-button" data-translate="form_submit">Invia Richiesta</button>
             </form>
 
-            <div id="successMessage" class="success-message">
+            <div id="successMessage" class="success-message" data-translate="success_message">
                 ✓ Richiesta inviata con successo! Ti contatteremo presto per confermare l'appuntamento.
             </div>
         </div>
@@ -216,13 +242,13 @@
 
     <!-- Contact Section -->
     <section id="contatti">
-        <h2 class="section-title">Contatti</h2>
-        <p class="section-subtitle">Vieni a trovarci</p>
+        <h2 class="section-title" data-translate="contact_title">Contatti</h2>
+        <p class="section-subtitle" data-translate="contact_subtitle">Vieni a trovarci</p>
 
         <div class="contact-grid">
             <div class="contact-item">
                 <div class="contact-icon"><i class="fa-solid fa-map-pin"></i></div>
-                <h3>Indirizzo</h3>
+                <h3 data-translate="contact_address">Indirizzo</h3>
                 <a href="https://maps.google.com/?q=Viale+Cassino+5c,+Riccione+RN,+Italia" target="_blank"
                     style="color: var(--light-grey); text-decoration: none;">
                     <p>Viale Cassino 5c<br>47838 Riccione RN, Italia</p>
@@ -231,7 +257,7 @@
 
             <div class="contact-item">
                 <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-                <h3>Telefono</h3>
+                <h3 data-translate="contact_phone">Telefono</h3>
                 <a href="tel:+393703617836"
                     style="color: var(--light-grey); text-decoration: none; transition: color 0.3s;">
                     <p>+39 370 361 7836</p>
@@ -240,7 +266,7 @@
 
             <div class="contact-item">
                 <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-                <h3>Email</h3>
+                <h3 data-translate="contact_email">Email</h3>
                 <a href="mailto:razorbarberiariccione@gmail.com"
                     style="color: var(--light-grey); text-decoration: none;">
                     <p>razorbarberiariccione@gmail.com</p>
@@ -249,8 +275,9 @@
 
             <div class="contact-item">
                 <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
-                <h3>Orari</h3>
-                <p>Mar, Mer: 09:00 - 12:30 / 14:00 - 19:00<br>Gio, Ven: 09:00 - 19:00<br>Sab: 09:00 - 18:00<br>Domenica
+                <h3 data-translate="contact_hours">Orari</h3>
+                <p data-translate="contact_hours_text">Mar, Mer: 09:00 - 12:30 / 14:00 - 19:00<br>Gio, Ven: 09:00 -
+                    19:00<br>Sab: 09:00 - 18:00<br>Domenica
                     e Lunedì: Chiuso</p>
             </div>
         </div>
@@ -298,10 +325,11 @@
             </a>
         </div>
 
-        <p>&copy; 2026 Razor Barberia. Tutti i diritti riservati.</p>
-        <p>Realizzato da Gabriele Menghi</p>
+        <p>&copy; 2026 Razor Barberia. <span data-translate="footer_rights">Tutti i diritti riservati.</span></p>
+        <p data-translate="footer_by">Realizzato da Gabriele Menghi</p>
     </footer>
 
+    <script src="translations.js"></script>
     <script>
         // Mobile Menu Toggle
         function toggleMenu() {
@@ -355,7 +383,7 @@
 
             // Service id e template id
             emailjs.send('service_qi7t3wc', 'template_6cm9ne7', templateParams)
-                .then(function(response) {
+                .then(function (response) {
                     console.log('Email inviata!', response);
 
                     // Salva anche in localStorage
@@ -377,13 +405,13 @@
                         document.getElementById('successMessage').classList.remove('show');
                     }, 5000);
 
-                }, function(error) {
+                }, function (error) {
                     console.error('Errore:', error);
                     alert('Errore nell\'invio. Riprova o contattaci al +39 370 361 7836');
 
                     submitButton.disabled = false;
                     submitButton.textContent = originalText;
-            });
+                });
         });
 
         // Add scroll effect to navigation
