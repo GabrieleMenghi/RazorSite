@@ -313,16 +313,19 @@
         submitButton.textContent = 'Invio in corso...';
         
         // Parametri da inviare
+        const str = document.getElementById('date').value;
+        const date = new Date(str);
+        const formattedDate = date.toLocaleDateString("it-IT");
         const templateParams = {
             nome: document.getElementById('name').value,
             telefono: document.getElementById('phone').value,
             email: document.getElementById('email').value || 'nessuna-email@fornita.com',
             servizio: document.getElementById('service').options[document.getElementById('service').selectedIndex].text,
-            data: document.getElementById('date').value,
+            data: formattedDate,
             ora: document.getElementById('time').value,
             note: document.getElementById('notes').value || 'Nessuna nota'
         };
-    
+        
         // Service id e template id
         emailjs.send('service_qi7t3wc', 'template_6cm9ne7', templateParams)
             .then(function(response) {
