@@ -15,6 +15,13 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
 
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Public Key
+        emailjs.init("-4aMC8jliMqJG4ArW");
+    </script>
+
 </head>
 <body>
     <!-- Navigation -->
@@ -149,12 +156,14 @@
                     <label for="service">Servizio Desiderato *</label>
                     <select id="service" name="service" required>
                         <option value="">Seleziona un servizio</option>
-                        <option value="taglio-classico">Taglio Classico - €25</option>
-                        <option value="rasatura">Rasatura Completa - €30</option>
-                        <option value="styling">Styling & Design - €35</option>
-                        <option value="barba">Barba & Baffi - €20</option>
-                        <option value="premium">Pacchetto Premium - €65</option>
-                        <option value="bambini">Taglio Bambini - €18</option>
+                        <option value="taglio-boy">Taglio Boy - €17</option>
+                        <option value="taglio-uomo">Taglio Uomo - €25</option>
+                        <option value="rasatura-capo">Rasatura del Capo Smart - €10</option>
+                        <option value="modellatura-premium">Modellatura Barba Premium - €15</option>
+                        <option value="modellatura-smart">Modellatura Barba Smart - €10</option>
+                        <option value="rasatura-barba">Rasatura Barba Smart - €10</option>
+                        <option value="rasatura-tradizionale">Rasatura Tradizionale - €20</option>
+                        <option value="sopracciglia">Sopracciglia - €5</option>
                     </select>
                 </div>
 
@@ -260,204 +269,218 @@
         <p>Realizzato da Gabriele Menghi</p>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const menu = document.getElementById('nav-menu');
-            menu.classList.toggle('active');
-        }
+<script>
+    // Mobile Menu Toggle
+    function toggleMenu() {
+        const menu = document.getElementById('nav-menu');
+        menu.classList.toggle('active');
+    }
 
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    document.getElementById('nav-menu').classList.remove('active');
-                }
-            });
-        });
-
-        // Set minimum date to today
-        const dateInput = document.getElementById('date');
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
-
-        // Form Submission Handler
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                service: document.getElementById('service').value,
-                date: document.getElementById('date').value,
-                time: document.getElementById('time').value,
-                notes: document.getElementById('notes').value
-            };
-
-            // Store in localStorage (simulazione di salvataggio dati)
-            let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-            bookings.push({
-                ...formData,
-                timestamp: new Date().toISOString(),
-                status: 'pending'
-            });
-            localStorage.setItem('bookings', JSON.stringify(bookings));
-
-            // Show success message
-            document.getElementById('successMessage').classList.add('show');
-            
-            // Reset form
-            this.reset();
-
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                document.getElementById('successMessage').classList.remove('show');
-            }, 5000);
-
-            // Log to console (in produzione questo andrebbe inviato a un server)
-            console.log('Nuova prenotazione:', formData);
-        });
-
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.padding = '1rem 5%';
-            } else {
-                nav.style.padding = '1.5rem 5%';
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                // Close mobile menu if open
+                document.getElementById('nav-menu').classList.remove('active');
             }
         });
+    });
 
-        // Array con i nomi delle immagini
-        const galleryImages = [
-            'taglio1.jpeg',
-            'taglio2.jpeg',
-            'taglio3.jpeg',
-            'taglio4.jpeg',
-            'taglio5.jpeg',
-            'taglio6.jpeg',
-            'taglio7.jpeg',
-            'taglio8.jpeg',
-            'taglio9.jpeg',
-            'taglio10.jpeg',
-            'taglio11.jpeg',
-            'taglio12.jpeg',
-            'taglio13.jpeg',
-        ];
+    // Set minimum date to today
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
 
-        // Genera le immagini della gallery
-        const galleryGrid = document.querySelector('.gallery-grid');
-        galleryGrid.innerHTML = ''; // Pulisce il contenuto esistente
-
-        galleryImages.forEach((image, index) => {
-            const galleryItem = document.createElement('div');
-            galleryItem.className = 'gallery-item';
-            
-            const img = document.createElement('img');
-            img.src = `images/${image}`;
-            img.alt = `Lavoro barberia ${index + 1}`;
-            
-            galleryItem.appendChild(img);
-            galleryGrid.appendChild(galleryItem);
+    // Form Submission Handler con EmailJS
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitButton = this.querySelector('.submit-button');
+        const originalText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Invio in corso...';
+        
+        // Parametri da inviare
+        const templateParams = {
+            nome: document.getElementById('name').value,
+            telefono: document.getElementById('phone').value,
+            email: document.getElementById('email').value || 'nessuna-email@fornita.com',
+            servizio: document.getElementById('service').options[document.getElementById('service').selectedIndex].text,
+            data: document.getElementById('date').value,
+            ora: document.getElementById('time').value,
+            note: document.getElementById('notes').value || 'Nessuna nota'
+        };
+    
+        // Service id e template id
+        emailjs.send('service_qi7t3wc', 'template_6cm9ne7', templateParams)
+            .then(function(response) {
+                console.log('Email inviata!', response);
+                
+                // Salva anche in localStorage
+                let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+                bookings.push({
+                    ...templateParams,
+                    timestamp: new Date().toISOString(),
+                    status: 'inviata'
+                });
+                localStorage.setItem('bookings', JSON.stringify(bookings));
+                
+                document.getElementById('successMessage').classList.add('show');
+                document.getElementById('bookingForm').reset();
+                
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+                
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 5000);
+                
+            }, function(error) {
+                console.error('Errore:', error);
+                alert('Errore nell\'invio. Riprova o contattaci al +39 370 361 7836');
+                
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
         });
-
-		// Cookies
-		window.addEventListener("load", function(){
-			window.cookieconsent.initialise({
-				"palette": {
-					"popup": {
-						"background": "#1a1a1a",
-						"text": "#f5f5f5"
-					},
-					"button": {
-						"background": "#e5e4e2",
-						"text": "#0a0a0a"
-					}
-				},
-				"theme": "classic",
-				"position": "bottom",
-				"content": {
-					"message": "Questo sito utilizza cookie tecnici e di terze parti per migliorare l'esperienza di navigazione.",
-					"dismiss": "Accetto",
-					"link": "Privacy Policy",
-					"href": "privacy-policy.html"
-				}
     });
-});
 
-// Fullscreen image viewer with navigation
-const fullscreenOverlay = document.getElementById('imageFullscreen');
-const fullscreenImg = document.getElementById('fullscreenImg');
-const closeBtn = document.querySelector('.close-btn');
-
-const leftArrow = document.querySelector('.left-arrow');
-const rightArrow = document.querySelector('.right-arrow');
-
-const galleryImagesTags = Array.from(document.querySelectorAll('.gallery-item img'));
-let currentIndex = 0;
-
-// Open fullscreen
-galleryImagesTags.forEach((img, index) => {
-    img.addEventListener('click', () => {
-        currentIndex = index;
-        fullscreenImg.src = img.src;
-        fullscreenOverlay.classList.add('active');
+    // Add scroll effect to navigation
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+            nav.style.padding = '1rem 5%';
+        } else {
+            nav.style.padding = '1.5rem 5%';
+        }
     });
-});
 
-// Navigation function
-function showImage(index) {
-    currentIndex = (index + galleryImagesTags.length) % galleryImagesTags.length;
-    fullscreenImg.src = galleryImagesTags[currentIndex].src;
-}
+    // Array con i nomi delle immagini
+    const galleryImages = [
+        'taglio1.jpeg',
+        'taglio2.jpeg',
+        'taglio3.jpeg',
+        'taglio4.jpeg',
+        'taglio5.jpeg',
+        'taglio6.jpeg',
+        'taglio7.jpeg',
+        'taglio8.jpeg',
+        'taglio9.jpeg',
+        'taglio10.jpeg',
+        'taglio11.jpeg',
+        'taglio12.jpeg',
+        'taglio13.jpeg',
+    ];
 
-// Arrows click
-leftArrow.addEventListener('click', () => showImage(currentIndex - 1));
-rightArrow.addEventListener('click', () => showImage(currentIndex + 1));
+    // Genera le immagini della gallery
+    const galleryGrid = document.querySelector('.gallery-grid');
+    galleryGrid.innerHTML = ''; // Pulisce il contenuto esistente
 
-// Close fullscreen
-closeBtn.addEventListener('click', () => {
-    fullscreenOverlay.classList.remove('active');
-});
+    galleryImages.forEach((image, index) => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        
+        const img = document.createElement('img');
+        img.src = `images/${image}`;
+        img.alt = `Lavoro barberia ${index + 1}`;
+        
+        galleryItem.appendChild(img);
+        galleryGrid.appendChild(galleryItem);
+    });
 
-// Click outside image
-fullscreenOverlay.addEventListener('click', (e) => {
-    if (e.target === fullscreenOverlay) {
-        fullscreenOverlay.classList.remove('active');
+    // Cookies
+    window.addEventListener("load", function(){
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#1a1a1a",
+                    "text": "#f5f5f5"
+                },
+                "button": {
+                    "background": "#e5e4e2",
+                    "text": "#0a0a0a"
+                }
+            },
+            "theme": "classic",
+            "position": "bottom",
+            "content": {
+                "message": "Questo sito utilizza cookie tecnici e di terze parti per migliorare l'esperienza di navigazione.",
+                "dismiss": "Accetto",
+                "link": "Privacy Policy",
+                "href": "privacy-policy.html"
+            }
+        });
+    });
+
+    // Fullscreen image viewer with navigation
+    const fullscreenOverlay = document.getElementById('imageFullscreen');
+    const fullscreenImg = document.getElementById('fullscreenImg');
+    const closeBtn = document.querySelector('.close-btn');
+
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+
+    const galleryImagesTags = Array.from(document.querySelectorAll('.gallery-item img'));
+    let currentIndex = 0;
+
+    // Open fullscreen
+    galleryImagesTags.forEach((img, index) => {
+        img.addEventListener('click', () => {
+            currentIndex = index;
+            fullscreenImg.src = img.src;
+            fullscreenOverlay.classList.add('active');
+        });
+    });
+
+    // Navigation function
+    function showImage(index) {
+        currentIndex = (index + galleryImagesTags.length) % galleryImagesTags.length;
+        fullscreenImg.src = galleryImagesTags[currentIndex].src;
     }
-});
 
-// Keyboard arrows
-document.addEventListener('keydown', (e) => {
-    if (!fullscreenOverlay.classList.contains('active')) return;
+    // Arrows click
+    leftArrow.addEventListener('click', () => showImage(currentIndex - 1));
+    rightArrow.addEventListener('click', () => showImage(currentIndex + 1));
 
-    if (e.key === "ArrowRight") showImage(currentIndex + 1);
-    if (e.key === "ArrowLeft") showImage(currentIndex - 1);
-    if (e.key === "Escape") fullscreenOverlay.classList.remove('active');
-});
+    // Close fullscreen
+    closeBtn.addEventListener('click', () => {
+        fullscreenOverlay.classList.remove('active');
+    });
 
-// Mobile swipe
-let touchStartX = 0;
+    // Click outside image
+    fullscreenOverlay.addEventListener('click', (e) => {
+        if (e.target === fullscreenOverlay) {
+            fullscreenOverlay.classList.remove('active');
+        }
+    });
 
-fullscreenOverlay.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-});
+    // Keyboard arrows
+    document.addEventListener('keydown', (e) => {
+        if (!fullscreenOverlay.classList.contains('active')) return;
 
-fullscreenOverlay.addEventListener('touchend', (e) => {
-    let diff = e.changedTouches[0].screenX - touchStartX;
+        if (e.key === "ArrowRight") showImage(currentIndex + 1);
+        if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+        if (e.key === "Escape") fullscreenOverlay.classList.remove('active');
+    });
 
-    if (diff > 50) showImage(currentIndex - 1); // swipe right
-    if (diff < -50) showImage(currentIndex + 1); // swipe left
-});
+    // Mobile swipe
+    let touchStartX = 0;
+
+    fullscreenOverlay.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    fullscreenOverlay.addEventListener('touchend', (e) => {
+        let diff = e.changedTouches[0].screenX - touchStartX;
+
+        if (diff > 50) showImage(currentIndex - 1); // swipe right
+        if (diff < -50) showImage(currentIndex + 1); // swipe left
+    });
 
     </script>
 </body>
