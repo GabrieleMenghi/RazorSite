@@ -526,7 +526,7 @@ footer p {
     }
 
     .hero-variant-4 .hero-image-side {
-        flex: 0 0 40vh;
+        flex: 0 0 65% !important;
         background-position: center top;
     }
 
@@ -861,5 +861,122 @@ input[type="time"] {
     .lang-btn {
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
+    }
+}
+
+/* Reviews Section */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+}
+
+.review-card {
+    background: var(--dark-grey);
+    padding: 2.5rem;
+    border: 1px solid var(--medium-grey);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.review-card a {
+    text-decoration: none;
+}
+
+.review-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+    transition: left 0.4s ease;
+}
+
+.review-card:hover::before {
+    left: 0;
+}
+
+.review-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 40px rgba(207, 205, 197, 0.2);
+}
+
+.review-stars {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.review-stars i {
+    color: var(--gold);
+    font-size: 1.2rem;
+}
+
+.review-text {
+    color: var(--light-grey);
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 2rem;
+    min-height: 100px;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.author-info h4 {
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.review-date {
+    color: var(--light-grey);
+    font-size: 0.85rem;
+}
+
+.reviews-cta {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 3rem;
+    background: var(--dark-grey);
+    border: 1px solid var(--medium-grey);
+}
+
+.reviews-cta p {
+    color: var(--light-grey);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-text {
+        min-height: auto;
     }
 }

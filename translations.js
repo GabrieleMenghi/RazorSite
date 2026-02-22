@@ -5,6 +5,7 @@ const translations = {
         nav_home: "Home",
         nav_services: "Servizi",
         nav_gallery: "Gallery",
+        nav_recensioni: "Recensioni",
         nav_booking: "Prenota",
         nav_contacts: "Contatti",
         
@@ -94,7 +95,13 @@ const translations = {
         // Cookie
         cookie_message: "Questo sito utilizza cookie tecnici e di terze parti per migliorare l'esperienza di navigazione.",
         cookie_accept: "Accetto",
-        cookie_link: "Privacy Policy"
+        cookie_link: "Privacy Policy",
+
+        reviews_title: "Recensioni",
+        reviews_subtitle: "Cosa dicono i nostri clienti",
+
+        reviews_cta_text: "Vuoi lasciare anche tu una recensione?",
+        reviews_cta_button: "Lascia una recensione"
     },
     
     en: {
@@ -102,6 +109,7 @@ const translations = {
         nav_home: "Home",
         nav_services: "Services",
         nav_gallery: "Gallery",
+        nav_recensioni: "Reviews",
         nav_booking: "Book",
         nav_contacts: "Contact",
         
@@ -191,7 +199,13 @@ const translations = {
         // Cookie
         cookie_message: "This site uses technical and third-party cookies to improve the browsing experience.",
         cookie_accept: "Accept",
-        cookie_link: "Privacy Policy"
+        cookie_link: "Privacy Policy",
+
+        reviews_title: "Reviews",
+        reviews_subtitle: "What our clients say",
+
+        reviews_cta_text: "Want to leave a review too?",
+        reviews_cta_button: "Leave a review"
     }
 };
 
