@@ -522,8 +522,16 @@ footer p {
 
 @media (max-width: 768px) {
     .hero-variant-4 {
+        height: 150vh !important;
+
         flex-direction: column;
     }
+
+    /* .hero-variant-4 {
+        height: 100vh;
+        display: flex;
+        background-color: #0a0a0a;
+    } */
 
     .hero-variant-4 .hero-image-side {
         flex: 0 0 65% !important;
