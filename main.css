@@ -837,25 +837,17 @@ input[type="time"] {
 }
 
 .lang-btn {
-    background: none;
-    border: 2px solid var(--medium-grey);
-    color: var(--light-grey);
-    padding: 0.5rem 1rem;
-    cursor: pointer;
     transition: all 0.3s ease;
     font-size: 0.9rem;
     letter-spacing: 1px;
 }
 
 .lang-btn:hover {
-    border-color: var(--gold);
     color: var(--gold);
 }
 
 .lang-btn.active {
-    background: var(--gold);
-    color: var(--black);
-    border-color: var(--gold);
+    font-weight: bolder;
 }
 
 @media (max-width: 768px) {
