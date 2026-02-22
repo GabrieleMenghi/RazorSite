@@ -376,7 +376,7 @@ section {
 
 .contact-item {
     text-align: center;
-    padding: 2rem;
+    /* padding: 2rem; */
 }
 
 .contact-icon {
@@ -526,12 +526,6 @@ footer p {
 
         flex-direction: column;
     }
-
-    /* .hero-variant-4 {
-        height: 100vh;
-        display: flex;
-        background-color: #0a0a0a;
-    } */
 
     .hero-variant-4 .hero-image-side {
         flex: 0 0 65% !important;
