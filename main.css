@@ -1056,3 +1056,18 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         overflow: hidden;
     }
 }
+
+/* Fix gallery mobile - foto complete */
+@media (max-width: 768px) {
+    .gallery-item {
+        height: auto; /* Altezza automatica */
+        min-height: 250px; /* Minimo per evitare troppe piccole */
+        aspect-ratio: 4/3; /* Proporzione 4:3 */
+    }
+    
+    .gallery-item img {
+        object-fit: contain; /* Mostra foto intera */
+        background: var(--dark-grey); /* Sfondo per spazi vuoti */
+        padding: 0.5rem; /* Piccolo padding */
+    }
+}
